@@ -5,809 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Reflections</title>
+    <title>My Thoughts</title>
 
     <style>
-        /* =========================
-           RESET & GLOBAL
-        ========================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #0d0f12;
-            --card: #15181d;
-            --card-hover: #1a1e24;
-            --text: #e8e8e8;
-            --muted: #9298a1;
-            --accent: #c9a7ff;
-            --border: #292d34;
-            --quote: #b9a5d6;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
+            max-width: 750px;
+            margin: 60px auto;
+            padding: 0 25px;
 
-            background: var(--bg);
-            color: var(--text);
+            font-family: Georgia, serif;
             line-height: 1.7;
+
+            background: #ffffff;
+            color: #222222;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================== */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 18px 7%;
-
-            background: rgba(13, 15, 18, 0.85);
-            backdrop-filter: blur(12px);
-
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            font-size: 14px;
-            transition: 0.25s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-
-            padding: 120px 10% 80px;
-
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(160, 120, 220, 0.12),
-                    transparent 35%
-                );
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .eyebrow {
-            color: var(--accent);
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 7vw, 82px);
-            line-height: 1.05;
-            font-weight: 600;
-            letter-spacing: -3px;
-            margin-bottom: 28px;
-        }
-
-        .hero h1 span {
-            color: var(--accent);
-        }
-
-        .hero p {
-            max-width: 650px;
-            color: var(--muted);
-            font-size: 18px;
-        }
-
-        /* =========================
-           SECTIONS
-        ========================== */
-
-        section {
-            padding: 110px 10%;
-        }
-
-        .section-header {
-            max-width: 700px;
-            margin-bottom: 55px;
-        }
-
-        .section-number {
-            color: var(--accent);
-            font-size: 13px;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(30px, 5vw, 48px);
-            margin-bottom: 15px;
-            letter-spacing: -1.5px;
-        }
-
-        .section-header p {
-            color: var(--muted);
-        }
-
-        /* =========================
-           REFLECTION CARDS
-        ========================== */
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-
-            padding: 32px;
-            border-radius: 14px;
-
-            transition:
-                transform 0.25s,
-                background 0.25s,
-                border-color 0.25s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            background: var(--card-hover);
-            border-color: #3a3f48;
-        }
-
-        .card-date {
-            color: var(--muted);
-            font-size: 12px;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-        }
-
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #b7bbc2;
-            font-size: 15px;
-        }
-
-        /* =========================
-           UNSAID COMMENTS
-        ========================== */
-
-        .quote-card {
-            max-width: 850px;
-
-            background: var(--card);
-            border-left: 3px solid var(--accent);
-
-            padding: 30px 35px;
-            margin-bottom: 22px;
-
-            border-radius: 0 12px 12px 0;
-        }
-
-        .quote {
-            font-size: 20px;
-            color: var(--quote);
-            font-style: italic;
-            margin-bottom: 18px;
-        }
-
-        .response {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .response strong {
-            color: var(--text);
-        }
-
-        /* =========================
-           MOMENTS
-        ========================== */
-
-        .timeline {
-            max-width: 850px;
-            border-left: 1px solid var(--border);
-            padding-left: 35px;
-        }
-
-        .moment {
-            position: relative;
-            margin-bottom: 55px;
-        }
-
-        .moment::before {
-            content: "";
-
-            position: absolute;
-            left: -41px;
-            top: 7px;
-
-            width: 11px;
-            height: 11px;
-
-            background: var(--bg);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-        }
-
-        .moment-date {
-            color: var(--accent);
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .moment h3 {
-            font-size: 23px;
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
             margin-bottom: 10px;
         }
 
-        .moment p {
-            color: var(--muted);
+        .intro {
+            color: #777;
+            margin-bottom: 50px;
         }
 
-        /* =========================
-           NOTE TO SELF
-        ========================== */
-
-        .note {
-            max-width: 850px;
-
-            padding: 50px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(201,167,255,0.10),
-                    rgba(255,255,255,0.02)
-                );
-
-            border: 1px solid var(--border);
-            border-radius: 18px;
+        .entry {
+            margin-bottom: 50px;
         }
 
-        .note p {
+        .date {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        h2 {
             font-size: 22px;
-            line-height: 1.8;
+            font-weight: normal;
+            margin-bottom: 10px;
         }
 
-        /* =========================
-           FOOTER
-        ========================== */
+        p {
+            font-size: 17px;
+            white-space: pre-line;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 50px 0;
+        }
 
         footer {
-            padding: 60px 10%;
-            border-top: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 13px;
-
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        /* =========================
-           MOBILE
-        ========================== */
-
-        @media (max-width: 700px) {
-
-            nav {
-                padding: 16px 6%;
-            }
-
-            .nav-links {
-                gap: 12px;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-            }
-
-            .hero {
-                padding: 120px 7% 80px;
-            }
-
-            section {
-                padding: 80px 7%;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                padding: 25px;
-            }
-
-            .quote-card {
-                padding: 25px;
-            }
-
-            .note {
-                padding: 30px;
-            }
-
-            .note p {
-                font-size: 18px;
-            }
-
-            footer {
-                flex-direction: column;
-            }
+            color: #999;
+            font-size: 14px;
+            margin-top: 80px;
         }
     </style>
 </head>
 
-
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+    <h1>My Thoughts</h1>
 
-    <nav>
-        <a href="#home" class="logo">[Your Name]</a>
-
-        <ul class="nav-links">
-            <li><a href="#reflections">Reflections</a></li>
-            <li><a href="#unsaid">Unsaid</a></li>
-            <li><a href="#moments">Moments</a></li>
-            <li><a href="#notes">Notes</a></li>
-        </ul>
-    </nav>
+    <div class="intro">
+        A place for things I think, feel, remember,
+        and sometimes don't say.
+    </div>
 
 
     <!-- =========================
-         HERO
+         WRITE YOUR ENTRIES BELOW
     ========================== -->
 
-    <header class="hero" id="home">
 
-        <div class="hero-content">
+    <div class="entry">
 
-            <div class="eyebrow">
-                A personal archive
-            </div>
-
-            <h1>
-                Things I think about
-                <span>when nobody asks.</span>
-            </h1>
-
-            <p>
-                [Write a short introduction here.
-
-                For example:
-                "A collection of thoughts, reflections,
-                things I learned, things I never said,
-                and moments that stayed with me."]
-            </p>
-
+        <div class="date">
+            [DATE]
         </div>
 
-    </header>
+        <h2>
+            [TITLE]
+        </h2>
+
+        <p>
+[Write whatever you feel here.
+
+There doesn't have to be a particular structure.
+You can write about your day, something someone said,
+something that bothered you, something you realized,
+or simply something that's been on your mind.]
+        </p>
+
+    </div>
 
 
-    <!-- =========================
-         REFLECTIONS
-    ========================== -->
+    <hr>
 
-    <section id="reflections">
 
-        <div class="section-header">
+    <div class="entry">
 
-            <div class="section-number">
-                01 — REFLECTIONS
-            </div>
-
-            <h2>Things I've learned.</h2>
-
-            <p>
-                [A short description of what this section contains.]
-            </p>
-
+        <div class="date">
+            [DATE]
         </div>
 
+        <h2>
+            [TITLE]
+        </h2>
 
-        <div class="grid">
+        <p>
+[Write your thoughts here.]
+        </p>
 
-            <!-- REFLECTION 1 -->
-
-            <article class="card">
-
-                <div class="card-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Reflection title]
-                </h3>
-
-                <p>
-                    [Write your reflection here.
-
-                    What happened?
-                    What did you think at the time?
-                    What do you think about it now?
-                    What did you learn from it?]
-                </p>
-
-            </article>
+    </div>
 
 
-            <!-- REFLECTION 2 -->
-
-            <article class="card">
-
-                <div class="card-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Reflection title]
-                </h3>
-
-                <p>
-                    [Your text goes here.]
-                </p>
-
-            </article>
+    <hr>
 
 
-            <!-- REFLECTION 3 -->
+    <div class="entry">
 
-            <article class="card">
-
-                <div class="card-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Reflection title]
-                </h3>
-
-                <p>
-                    [Your text goes here.]
-                </p>
-
-            </article>
-
-
-            <!-- REFLECTION 4 -->
-
-            <article class="card">
-
-                <div class="card-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Reflection title]
-                </h3>
-
-                <p>
-                    [Your text goes here.]
-                </p>
-
-            </article>
-
+        <div class="date">
+            [DATE]
         </div>
 
-    </section>
+        <h2>
+            [TITLE]
+        </h2>
 
+        <p>
+[Write your thoughts here.]
+        </p>
 
-    <!-- =========================
-         THINGS I DIDN'T SAY
-    ========================== -->
+    </div>
 
-    <section id="unsaid">
-
-        <div class="section-header">
-
-            <div class="section-number">
-                02 — UNSAID
-            </div>
-
-            <h2>
-                Things I heard but didn't respond to.
-            </h2>
-
-            <p>
-                [Sometimes the response comes later.
-                Sometimes it never does.]
-            </p>
-
-        </div>
-
-
-        <!-- COMMENT 1 -->
-
-        <div class="quote-card">
-
-            <div class="quote">
-                "[Write the comment you heard here.]"
-            </div>
-
-            <div class="response">
-                <strong>What I didn't say:</strong><br>
-                [Write what you actually wanted to say.]
-            </div>
-
-        </div>
-
-
-        <!-- COMMENT 2 -->
-
-        <div class="quote-card">
-
-            <div class="quote">
-                "[Another comment someone made.]"
-            </div>
-
-            <div class="response">
-                <strong>What I didn't say:</strong><br>
-                [Your response.]
-            </div>
-
-        </div>
-
-
-        <!-- COMMENT 3 -->
-
-        <div class="quote-card">
-
-            <div class="quote">
-                "[Another thing you remember hearing.]"
-            </div>
-
-            <div class="response">
-                <strong>What I didn't say:</strong><br>
-                [Your response.]
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         MOMENTS
-    ========================== -->
-
-    <section id="moments">
-
-        <div class="section-header">
-
-            <div class="section-number">
-                03 — MOMENTS
-            </div>
-
-            <h2>
-                Moments that stayed.
-            </h2>
-
-            <p>
-                [Not everything important has a dramatic ending.]
-            </p>
-
-        </div>
-
-
-        <div class="timeline">
-
-
-            <article class="moment">
-
-                <div class="moment-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Moment / Event]
-                </h3>
-
-                <p>
-                    [Describe what happened.
-
-                    Include the small details you remember,
-                    how you felt, and why this moment stayed
-                    with you.]
-                </p>
-
-            </article>
-
-
-            <article class="moment">
-
-                <div class="moment-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Moment / Event]
-                </h3>
-
-                <p>
-                    [Your text goes here.]
-                </p>
-
-            </article>
-
-
-            <article class="moment">
-
-                <div class="moment-date">
-                    [DATE]
-                </div>
-
-                <h3>
-                    [Moment / Event]
-                </h3>
-
-                <p>
-                    [Your text goes here.]
-                </p>
-
-            </article>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         NOTES TO SELF
-    ========================== -->
-
-    <section id="notes">
-
-        <div class="section-header">
-
-            <div class="section-number">
-                04 — NOTES
-            </div>
-
-            <h2>
-                Notes to myself.
-            </h2>
-
-        </div>
-
-
-        <div class="note">
-
-            <p>
-
-                [Write something here that you want
-                your future self to remember.
-
-                It can be one sentence.
-                It can be a paragraph.
-                It can be something you wish
-                you had understood earlier.]
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
 
     <footer>
-
-        <div>
-            © [YEAR] [YOUR NAME]
-        </div>
-
-        <div>
-            Written for myself.
-        </div>
-
+        This is my space.
     </footer>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-
-    <script>
-
-        // Highlight navigation link while scrolling
-
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
-
-        window.addEventListener("scroll", () => {
-
-            let current = "";
-
-            sections.forEach(section => {
-
-                const sectionTop = section.offsetTop - 150;
-                const sectionHeight = section.clientHeight;
-
-                if (
-                    window.scrollY >= sectionTop &&
-                    window.scrollY < sectionTop + sectionHeight
-                ) {
-                    current = section.getAttribute("id");
-                }
-
-            });
-
-            navLinks.forEach(link => {
-
-                link.style.color = "";
-
-                if (link.getAttribute("href") === "#" + current) {
-                    link.style.color = "var(--text)";
-                }
-
-            });
-
-        });
-
-    </script>
 
 </body>
 </html>
